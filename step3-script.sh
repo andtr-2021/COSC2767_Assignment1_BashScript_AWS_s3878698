@@ -82,6 +82,8 @@ fi
 
 # go back to root
 cd ~
+# move to webapp folder
+cd anProfile/
 # compile and build the web
 mvn package
 # Deploy the WAR artifacts on Tomcat serve
