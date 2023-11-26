@@ -1,5 +1,5 @@
 # setup openjdk
-sudo amazon-linux-extras install java-openjdk11
+sudo amazon-linux-extras install -y java-openjdk11
 # move to opt dir
 cd /opt
 # install maven
