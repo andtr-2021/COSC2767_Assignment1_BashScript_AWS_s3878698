@@ -41,6 +41,8 @@ fi
 echo $PATH
 
 source .bash_profile
+
+echo $PATH
 # DONE SETUP for enviroment variables
 
 # back to opt dir
@@ -54,7 +56,11 @@ mv apache-tomcat-9.0.83 tomcat
 # setup hybolic links to startup and shutdown tomcat
 ln -s /opt/tomcat/bin/startup.sh /usr/local/bin/tomcatup
 ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
-# turn on tomcat
+# turn on tomcat to test
+tomcatup
+# turn off tomcat to test
+tomcatdown
+# then turn on for the webapp
 tomcatup
 # back to root
 cd ~
