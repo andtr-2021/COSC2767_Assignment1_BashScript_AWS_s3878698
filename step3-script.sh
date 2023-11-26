@@ -66,25 +66,69 @@ tomcatup
 cd ~
 # generate maven web template. create anProfile
 mvn archetype:generate -DgroupId=vn.edu.rmit -DartifactId=anProfile -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-# move to anProfile folder
-cd anProfile/
 # move to webapp folder
-cd src/main/webapp/
+cd anProfile/src/main/webapp/
+# add the profile website to the index.jsp file
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Do Truong An</title>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 16px;
+            margin-left: 200px;
+            margin-top: 30px;
+            padding: 20px;
+        }
 
-# edit the file index.jsp
-html_file="index.jsp"  # Set the file name
-# Define the new line to add
-new_line='<h1>Do Truong An</h1>'
-# Define a pattern to search for in the HTML file
-pattern='<body>'
-# Check if the pattern exists in the HTML file
-if grep -qF "$pattern" "$html_file"; then
-    # Insert the new line below the pattern
-    sed -i "/$pattern/ a $new_line" "$html_file"
-    echo "Changes made to $html_file"
-else
-    echo "Pattern not found in $html_file: $pattern. Changes not applied."
-fi
+        h1 {
+            color: #333;
+        }
+
+        h1:hover, a:hover {
+            color: red; /* Change text color */
+        }
+
+        p {
+            color: #666;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1><a href="https://github.com/andtr-2021">Do Truong An</a></h1>
+    <h3>Information:</h3>
+    <p><strong>sID:</strong> s3878698</p>
+    <p><strong>Major:</strong> Software Engineering</p>
+
+    <h3>Programming Skills:</h3>
+    <ul>
+        <li><strong>Languages:</strong> Python, Java, C++, SQL, HTML/CSS/JavaScript.</li>
+        <li><strong>Frameworks:</strong> Keras, TensorFlow, Spring.</li>
+    </ul>
+
+    <footer>
+        <p>Contact me at: <a href="mailto:s3878698@rmit.edu.vn">s3878698@rmit.edu.vn</a></p>
+    </footer>
+</body>
+</html>' > index.jsp
 
 # go back to root
 cd ~
