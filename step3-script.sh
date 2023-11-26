@@ -54,6 +54,8 @@ mv apache-tomcat-9.0.83 tomcat
 # setup hybolic links to startup and shutdown tomcat
 ln -s /opt/tomcat/bin/startup.sh /usr/local/bin/tomcatup
 ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
+# turn on tomcat
+tomcatup
 # back to root
 cd ~
 # generate maven web template. create anProfile
@@ -62,19 +64,26 @@ mvn archetype:generate -DgroupId=vn.edu.rmit -DartifactId=anProfile -DarchetypeA
 cd anProfile/
 # move to webapp folder
 cd src/main/webapp/
+
 # edit the file index.jsp
+html_file="index.jsp"  # Set the file name
+# Define the new line to add
 new_line='<h1>Do Truong An</h1>'
+# Define a pattern to search for in the HTML file
 pattern='<body>'
-if grep -qF "$pattern" index.jsp; then
+# Check if the pattern exists in the HTML file
+if grep -qF "$pattern" "$html_file"; then
     # Insert the new line below the pattern
-    sed -i "/$pattern/ a $new_line" your_html_file.html
-    echo "Changes made to your_html_file.html"
+    sed -i "/$pattern/ a $new_line" "$html_file"
+    echo "Changes made to $html_file"
 else
-    echo "Pattern not found in your_html_file.html: $pattern. Changes not applied."
+    echo "Pattern not found in $html_file: $pattern. Changes not applied."
 fi
+
 # go back to root
 cd ~
 # compile and build the web
 mvn package
 # Deploy the WAR artifacts on Tomcat serve
-cp /root/helloWorld/target/anProfile.war /opt/tomcat/webapps/
+cp /root/anProfile/target/anProfile.war /opt/tomcat/webapps/
+
