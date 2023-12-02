@@ -60,14 +60,18 @@ ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
 tomcatup
 # turn off tomcat to test
 tomcatdown
+
 # then turn on for the webapp
 tomcatup
 # back to root
 cd ~
-# generate maven web template. create anProfile
+
+# generate maven web template. create anProfile project
 mvn archetype:generate -DgroupId=vn.edu.rmit -DartifactId=anProfile -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
 # move to webapp folder
 cd anProfile/src/main/webapp/
+
 # add the profile website to the index.jsp file
 echo '<!DOCTYPE html>
 <html lang="en">
@@ -129,6 +133,7 @@ echo '<!DOCTYPE html>
     </footer>
 </body>
 </html>' > index.jsp
+
 
 # go back to root
 cd ~
