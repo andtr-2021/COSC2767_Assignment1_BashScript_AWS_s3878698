@@ -1,11 +1,8 @@
 
 # this script will be run on the learner lab terminal
-aws ec2 create-key-pair --key-name MyKeyPair45 --query 'KeyMaterial' --output text > MyKeyPair45.pem
-# edit the permissions for the file owner to read and write (6), and denies all permissions for other users (0).
-# make it more secure
-# chmod 400 a14.pem
+aws ec2 create-key-pair --key-name MyKeyPair50 --query 'KeyMaterial' --output text > MyKeyPair50.pem
 # create a security group
-command_output=$(aws ec2 create-security-group --group-name MyServerA1 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
+command_output=$(aws ec2 create-security-group --group-name MyServerA50 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
 
 # Extracting GroupId from the command output using jq (assuming the output is in JSON format)
 group_id=$(echo $command_output | jq -r '.GroupId')
@@ -26,5 +23,7 @@ aws ec2 authorize-security-group-ingress \
     --protocol tcp \
     --port 8080 \
     --cidr 0.0.0.0/0
-
-aws ec2 run-instances --image-id ami-0fa1ca9559f1892ec --count 1 --instance-type t2.micro --key-name MyKeyPair45 --security-group-ids $group_id --subnet-id subnet-05379441ae6f20873
+# luanch the instance 
+aws ec2 run-instances --image-id ami-0fa1ca9559f1892ec --count 1 --instance-type t2.micro --key-name MyKeyPair50 --security-group-ids $group_id --subnet-id subnet-05379441ae6f20873
+# finally, edit the permissions for the file owner to read and write (6), and denies all permissions for other users (0).
+# chmod 600 MyKeyPair50
