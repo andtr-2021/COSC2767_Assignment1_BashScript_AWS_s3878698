@@ -1,6 +1,6 @@
 
 # this script will be run on the learner lab terminal
-aws ec2 create-key-pair --key-name MyKeyPair40 --query 'KeyMaterial' --output text > MyKeyPair40.pem
+aws ec2 create-key-pair --key-name MyKeyPair45 --query 'KeyMaterial' --output text > MyKeyPair45.pem
 # edit the permissions for the file owner to read and write (6), and denies all permissions for other users (0).
 # make it more secure
 # chmod 400 a14.pem
@@ -27,4 +27,4 @@ aws ec2 authorize-security-group-ingress \
     --port 8080 \
     --cidr 0.0.0.0/0
 
-aws ec2 run-instances --image-id ami-0fa1ca9559f1892ec --count 1 --instance-type t2.micro --key-name MyKeyPair40 --security-group-ids $group_id --subnet-id subnet-05379441ae6f20873
+aws ec2 run-instances --image-id ami-0fa1ca9559f1892ec --count 1 --instance-type t2.micro --key-name MyKeyPair45 --security-group-ids $group_id --subnet-id subnet-05379441ae6f20873
