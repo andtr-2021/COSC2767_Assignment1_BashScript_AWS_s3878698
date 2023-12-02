@@ -1,19 +1,18 @@
 
 # this script will be run on the learner lab terminal
-aws ec2 create-key-pair --key-name a14 --query 'KeyMaterial' --output text > a14.pem
+aws ec2 create-key-pair --key-name a20 --query 'KeyMaterial' --output text > a20.pem
 # edit the permissions for the file owner to read and write (6), and denies all permissions for other users (0).
 # make it more secure
 chmod 400 a14.pem
 # create a security group
-command_output=$(aws ec2 create-security-group --group-name a1_server102 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
+command_output=$(aws ec2 create-security-group --group-name a1_server105 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
 
 # Extracting GroupId from the command output using jq (assuming the output is in JSON format)
 group_id=$(echo $command_output | jq -r '.GroupId')
-
 # Print or use the GroupId as needed
 echo "GroupId: $group_id"
+
 # (optional) check out the security-groups
-# aws ec2 describe-security-groups --group-ids $group_id
 # modify the security group rules
 # port 22 used for ssh
 aws ec2 authorize-security-group-ingress \
