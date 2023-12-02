@@ -3,7 +3,7 @@
 aws ec2 create-key-pair --key-name a1 --query 'KeyMaterial' --output text > a1.pem
 # edit the permissions for the file owner to read and write (6), and denies all permissions for other users (0).
 # make it more secure
-chmod 600 MyKeyPair.pem
+chmod 600 a1.pem
 # create a security group
 command_output=$(aws ec2 create-security-group --group-name a1_server100 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
 
