@@ -5,7 +5,7 @@ aws ec2 create-key-pair --key-name a1 --query 'KeyMaterial' --output text > a1.p
 # make it more secure
 chmod 600 a1.pem
 # create a security group
-command_output=$(aws ec2 create-security-group --group-name a1_server100 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
+command_output=$(aws ec2 create-security-group --group-name a1_server101 --description "My security group" --vpc-id vpc-0c0d6536daf9aaeb3)
 
 # Extracting GroupId from the command output using jq (assuming the output is in JSON format)
 group_id=$(echo $command_output | jq -r '.GroupId')
