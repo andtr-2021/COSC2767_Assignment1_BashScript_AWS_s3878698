@@ -1,3 +1,13 @@
+# RMIT University Vietnam
+# Course: COSC2767 Systems Deployment and Operations
+# Semester: 2023B
+# Assessment: Assignment 1
+# Author: Do Truong An
+# ID: s3878698
+# Created  date: 28/11/2023
+# Last modified: 3/13/2023
+# Acknowledgement:
+
 # setup openjdk
 sudo amazon-linux-extras install -y java-openjdk11
 # move to opt dir
