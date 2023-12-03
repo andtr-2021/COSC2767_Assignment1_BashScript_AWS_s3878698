@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set variables
-KEY_NAME="MyKeyPair60"
-SECURITY_GROUP_NAME="MyServerA60"
+KEY_NAME="MyKeyPair100"
+SECURITY_GROUP_NAME="MyServer100"
 VPC_ID="vpc-0c0d6536daf9aaeb3"
 IMAGE_ID="ami-0fa1ca9559f1892ec"
 SUBNET_ID="subnet-05379441ae6f20873"
