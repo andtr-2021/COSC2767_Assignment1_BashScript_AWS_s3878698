@@ -41,13 +41,13 @@ authorize_security_group $PORT_SSH
 # Authorize Tomcat port
 authorize_security_group $PORT_TOMCAT
 # Launch the instance
-aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID --query ""
+aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID | jq .Instances[].InstanceId
 
 # Wait for the instance to be running
 instance_id=$(aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text)
 while [ -z "$instance_id" ]; do
     echo "Waiting for the instance to be running..."
-    sleep 5
+    sleep 1m
     instance_id=$(aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text)
 done
 
