@@ -19,6 +19,8 @@ PORT_TOMCAT=8080
 
 # Create key pair
 aws ec2 create-key-pair --key-name $KEY_NAME --query 'KeyMaterial' --output text > "$KEY_NAME.pem"
+# Edit permissions for the file owner
+chmod 600 "$KEY_NAME.pem"
 # Create a security group
 command_output=$(aws ec2 create-security-group --group-name $SECURITY_GROUP_NAME --description "My security group" --vpc-id $VPC_ID)
 # Extract GroupId from the command output using jq (assuming JSON format)
@@ -40,8 +42,7 @@ authorize_security_group $PORT_SSH
 authorize_security_group $PORT_TOMCAT
 # Launch the instance
 aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID
-# Edit permissions for the file owner
-chmod 600 "$KEY_NAME.pem"
+
 
 # Wait for the instance to be running
 instance_id=$(aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text)
