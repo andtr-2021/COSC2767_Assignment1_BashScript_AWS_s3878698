@@ -40,7 +40,9 @@ authorize_security_group() {
 authorize_security_group $PORT_SSH
 # Authorize Tomcat port
 authorize_security_group $PORT_TOMCAT
-# Launch the instance
+
+# Launch the instance. It will show the instance properties in Json format.
+# **[IMPORTANT]** ==> if it show a colon like this ":", please type 'q' and press enter, which means quit. 
 aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID
 
 # Wait for the instance to be running
