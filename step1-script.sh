@@ -40,6 +40,13 @@ authorize_security_group() {
 authorize_security_group $PORT_SSH
 # Authorize Tomcat port
 authorize_security_group $PORT_TOMCAT
+# handling things
+# Expect script to handle instance details output
+expect {
+    -re "\[EC2-INSTANCE-INIT\] Initiating instance: i-\d+" {
+        send "q\n"
+    }
+}
 # Launch the instance
 aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID
 
