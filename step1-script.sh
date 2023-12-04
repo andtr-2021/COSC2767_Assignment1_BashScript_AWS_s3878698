@@ -9,8 +9,8 @@
 # Acknowledgement: 
 
 # Set variables
-KEY_NAME="MyKeyPair149"
-SECURITY_GROUP_NAME="MyServer149"
+KEY_NAME="MyKeyPair150"
+SECURITY_GROUP_NAME="MyServer150"
 VPC_ID="vpc-0c0d6536daf9aaeb3"
 IMAGE_ID="ami-0fa1ca9559f1892ec"
 SUBNET_ID="subnet-05379441ae6f20873"
@@ -43,12 +43,11 @@ authorize_security_group $PORT_TOMCAT
 # Launch the instance
 aws ec2 run-instances --image-id $IMAGE_ID --count 1 --instance-type t2.micro --key-name $KEY_NAME --security-group-ids $group_id --subnet-id $SUBNET_ID
 
-sleep 30
 # Wait for the instance to be running
 instance_id=$(aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text)
 while [ -z "$instance_id" ]; do
     echo "Waiting for the instance to be running..."
-    sleep 45
+    sleep 5
     instance_id=$(aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text)
 done
 
