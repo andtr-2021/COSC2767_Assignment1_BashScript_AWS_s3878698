@@ -9,7 +9,7 @@
 # Acknowledgement:
 
 repo_url="https://github.com/andtr-2021/COSC2767_Assignment1_BashScript_AWS_s3878698.git"
-github_token="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"
+github_token="your_github_token"
 
 # Set the GitHub token as the username for authentication
 git config --global credential.helper store
